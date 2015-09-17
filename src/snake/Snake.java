@@ -114,6 +114,26 @@ public class Snake extends JFrame implements Runnable {
                 {
                     reset();
                 }
+                //Color buttons
+                if(startgame == false)
+                {
+                   if (e.VK_COMMA == e.getKeyCode())
+                    currentColor2++;
+                   if(currentColor2>5)
+                    currentColor2= 1;
+                   if (e.VK_PERIOD == e.getKeyCode())
+                    currentColor2--;
+                   if(currentColor2<1)
+                    currentColor2= 5;     
+                   if (e.VK_Q == e.getKeyCode())
+                    currentColor1--;
+                   if(currentColor1<1)
+                    currentColor1= 5;       
+                   if (e.VK_E == e.getKeyCode())
+                    currentColor1++;
+                   if(currentColor1>5)
+                    currentColor1= 1;
+                }
 //player 2 moving
                 if (e.VK_RIGHT == e.getKeyCode())
                 {
@@ -205,23 +225,6 @@ public class Snake extends JFrame implements Runnable {
                     board[currentRow2][currentColumn2] = SNAKE2;
                 }
                  
-//Color buttons
-                  if (e.VK_0 == e.getKeyCode())
-                    currentColor2++;
-                    if(currentColor2>5)
-                    currentColor2= 1;
-                   if (e.VK_CONTROL == e.getKeyCode())
-                    currentColor2--;
-                    if(currentColor2<1)
-                    currentColor2= 5;     
-                  if (e.VK_Q == e.getKeyCode())
-                    currentColor1--;
-                    if(currentColor1<1)
-                    currentColor1= 5;       
-                  if (e.VK_E == e.getKeyCode())
-                    currentColor1++;
-                    if(currentColor1>5)
-                    currentColor1= 1;
 
                 repaint();
             }
@@ -341,8 +344,8 @@ public class Snake extends JFrame implements Runnable {
             g.drawString("TRONSNAKE XXL", getX(10),getYNormal(getHeight2() /2)); 
 
             g.setFont(new Font("Goudy Stout",Font.ITALIC,12));
-            g.drawString("Player 1 colors: 1=pink 2=blue 3=green 4=orange 5=red", getX(70),getYNormal(getHeight2() /3)); 
-            g.drawString("Player 2 colors: 6=pink 7=blue 8=green 9=orange 0=red", getX(70),getYNormal(getHeight2() /3 -30));
+            g.drawString("Player 1 colors: Q and E to cycle through", getX(70),getYNormal(getHeight2() /3)); 
+            g.drawString("Player 2 colors: Comma and Period to cycle through", getX(70),getYNormal(getHeight2() /3 -30));
             g.drawString("first to 3, press space to begin!", getX(getWidth2() / 4),getYNormal(getHeight2() /6));
         }
 //death text
@@ -465,32 +468,34 @@ public class Snake extends JFrame implements Runnable {
                 timecount = 0;
         }
         timecount++;
+        
+            if(currentColor1 == 1)
+                snakecol1 = blue;
+            if(currentColor1 == 2)
+                snakecol1 = pink;
+            if(currentColor1 == 3)
+                snakecol1 = orange;
+            if(currentColor1 == 4)
+                snakecol1 = green;
+            if(currentColor1 == 5)
+                snakecol1 = red;
+
+            if(currentColor2 == 1)
+                snakecol2 = blue;
+            if(currentColor2 == 2)
+                snakecol2 = pink;
+            if(currentColor2 == 3)
+                snakecol2 = orange;
+            if(currentColor2 == 4)
+                snakecol2 = green;
+            if(currentColor2 == 5)
+                snakecol2 = red;
+        
 //point of return
 if (gameover1|gameover2|tiegame| startgame == false)
     return;
 //snake velocity   
 
-        if(currentColor1 == 1)
-            snakecol1 = blue;
-        if(currentColor1 == 2)
-            snakecol1 = pink;
-        if(currentColor1 == 3)
-            snakecol1 = orange;
-        if(currentColor1 == 4)
-            snakecol1 = green;
-        if(currentColor1 == 5)
-            snakecol1 = red;
-        
-        if(currentColor2 == 1)
-            snakecol2 = blue;
-        if(currentColor2 == 2)
-            snakecol2 = pink;
-        if(currentColor2 == 3)
-            snakecol2 = orange;
-        if(currentColor2 == 4)
-            snakecol2 = green;
-        if(currentColor2 == 5)
-            snakecol2 = red;
 
         if(timecount % snakevel == snakevel-1)
         {
